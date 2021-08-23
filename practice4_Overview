@@ -1,0 +1,31 @@
+import csv
+import re
+
+#open file
+f = open('C:/Users/swim1/Desktop/popSeoul.csv','r')
+rawfile = csv.reader(f)
+file = []
+for i in rawfile:
+    file.append(i)
+#str->flaot
+    for j in i:
+        try:
+            i[i.index(j)] = float(re.sub(',','',j))
+        except:
+            pass
+#extract over 3% population cities
+data = []
+for i in file:
+    korean = i[1]
+    foreigner = i[2]
+    senior = i[3]
+    try:
+        ratio = foreigner/(korean+foreigner+senior)
+        if ratio > 0.03:
+            data.append(i)
+    except:
+        pass
+#write into a csv file
+with open('C:/Users/swim1/Desktop/popSeoul2.csv','w',newline='') as f:
+     a = csv.writer(f, delimiter = ',')
+     a.writerows(data)
