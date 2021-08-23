@@ -1,0 +1,16 @@
+import csv
+
+def openscv():
+    filename = input("Please Enter the name of the file")
+    f = open("C:/Users/swim1/Downloads/{}".format(filename),'r',encoding='utf-8')
+    lines = []
+    for i in f:
+        i = lines.append(i)
+    return lines
+
+#Writing rows
+new = open('abc.scv','w',newline = '')
+csvobject = csv.writer(new,delimiter = " ")
+csvobject.writerows(openscv())
+print(csvobject)
+new.close()
