@@ -1,0 +1,21 @@
+import csv
+import re
+
+#파일 오픈
+f = open('C:/Users/swim1/Desktop/popSeoul.csv','r')
+rawData = csv.reader(f)
+line = []
+for i in rawData:
+    line.append(i)
+#실수 변환
+counter = 0
+data = []
+while counter < len(line):
+    for w in line[counter]:
+        if re.search('\d',w):
+            data.append(float(re.sub(',','',w)))
+        else:
+            data.append(w)
+        counter += 1
+
+print(data)
