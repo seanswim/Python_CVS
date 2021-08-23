@@ -1,0 +1,10 @@
+import csv, os
+
+def opencsv(filename):
+    file = csv.reader(open('C:/Users/swim1/Downloads/{}'.format(filename),'r',encoding='utf-8'))
+    a_list = []
+    for i in file:
+        a_list.append(i)
+    return a_list
+    file.close
+opencsv('practice.csv')
