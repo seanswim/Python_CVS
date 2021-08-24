@@ -1,0 +1,28 @@
+import csv
+import re
+
+f = open('C:/Users/swim1/Downloads/apt.csv','r')
+file = csv.reader(f)
+data =[]
+for i in file:
+    data.append(i)
+#str -> float
+    for j in i:
+        try:
+            i[i.index(j)] = float(re.sub(',','',j))
+        except:
+            pass
+
+#extract '강원' province AND over 120m^2 AND under 2억
+kangwon = []
+for i in data:
+    try:
+        if re.match('강원',i[0]) and i[5] >= 120 and i[8] <= 30000:
+            kangwon.append(i)
+    except:
+        pass
+
+#save in csv file
+with open('C:/Users/swim1/Downloads/kangwon.csv','w',newline='') as f:
+    a = csv.writer(f, delimiter=',')
+    a.writerows(kangwon)
